@@ -18,8 +18,13 @@ function Vehicle(id, loc){
      this.applyForce(steer);
   }
   if(this.id <0 ){
-    this.loc.x = mouseX;
-    this.loc.y = mouseY;
+    this.maxSpeed = 10;
+    var desired = JSVector.subGetNew(mouseLoc, this.loc);
+    desired.normalize();
+    desired.mult(this.maxSpeed);
+    var steer = JSVector.subGetNew(desired, this.vel);
+    this.applyForce(steer);
+    this.maxSpeed = 6;
   }
     this.vel.add(this.acc);
     this.loc.add(this.vel);

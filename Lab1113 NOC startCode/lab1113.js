@@ -13,6 +13,7 @@ var colorArray = [
 var vehicles = [];
 var mouseX, mouseY;
 var mouseObj;
+var mouseLoc = new JSVector(0, 0);
 
 function init(){
   //get the canvas
@@ -24,9 +25,9 @@ function init(){
   canvas.addEventListener('mousemove', function(){
     mouseX = event.offsetX;     // Get the mouse coordinate
     mouseY = event.offsetY;
-
   }
   , false);
+
   // get the context
   ctx = canvas.getContext('2d'); // This is the context
   makeVehicle(11);
@@ -35,6 +36,8 @@ function init(){
 }
 
 function animate(){
+  mouseLoc.x = mouseX;
+  mouseLoc.y = mouseY;
   requestAnimationFrame(animate);
   ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
   for(var i = 0; i < vehicles.length; i++){
